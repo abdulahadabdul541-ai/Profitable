@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Imran Shah Pro Trading Bot</title>
+<style>
+body{margin:0;background:#09111f;color:white;font-family:Arial;padding:16px}
+h1{color:#36e0bb;text-align:center;font-size:23px}
+.card{background:#142238;padding:15px;border-radius:13px;margin:12px 0}
+label{display:block;margin:13px 0}
+select,button{padding:12px;border:0;border-radius:8px;width:100%;margin-top:7px}
+select{background:#263b56;color:white}
+button{background:#12b99b;color:#07151b;font-weight:bold;font-size:16px}
+.check{width:auto;margin-right:8px}
+#result{text-align:center;font-size:27px;font-weight:bold;padding:18px}
+small{color:#a9b8ca}
+</style>
+</head>
+<body>
+<h1>👑 IMRAN SHAH PRO</h1>
+<p style="text-align:center">SMC • PRICE ACTION • MARKET ANALYSIS</p>
+
+<div class="card">
+<h3>Market Settings</h3>
+<label>Market
+<select id="market"><option>LIVE</option><option>OTC</option></select></label>
+<label>Currency Pair
+<select id="pair">
+<option>EUR/USD</option><option>GBP/USD</option>
+<option>USD/JPY</option><option>AUD/USD</option>
+<option>EUR/GBP</option><option>GBP/JPY</option>
+</select></label>
+<label>Expiry
+<select id="expiry">
+<option>5 Seconds</option><option>10 Seconds</option>
+<option>15 Seconds</option><option>1 Minute</option>
+</select></label>
+</div>
+
+<div class="card">
+<h3>SMC & Price Action Confirmations</h3>
+<div id="checks">
+<label><input class="check" type="checkbox"> Fair Value Gap (FVG)</label>
+<label><input class="check" type="checkbox"> Liquidity Sweep</label>
+<label><input class="check" type="checkbox"> Order Block</label>
+<label><input class="check" type="checkbox"> Break of Structure (BOS)</label>
+<label><input class="check" type="checkbox"> CHOCH</label>
+<label><input class="check" type="checkbox"> Support / Resistance</label>
+<label><input class="check" type="checkbox"> Supply / Demand</label>
+<label><input class="check" type="checkbox"> Trend Confirmation</label>
+<label><input class="check" type="checkbox"> RSI Confirmation</label>
+<label><input class="check" type="checkbox"> EMA Confirmation</label>
+<label><input class="check" type="checkbox"> MACD Confirmation</label>
+<label><input class="check" type="checkbox"> Candle Confirmation</label>
+<label><input class="check" type="checkbox"> Breakout / Retest</label>
+</div>
+</div>
+
+<div class="card">
+<h3>Market Quality</h3>
+<label>Market Condition
+<select id="condition">
+<option value="smooth">Smooth</option>
+<option value="volatile">High Volatility</option>
+<option value="choppy">Choppy / Sideways</option>
+<option value="spike">Unusual Spike</option>
+</select></label>
+<label>Direction
+<select id="direction">
+<option value="BUY">Bullish / BUY</option>
+<option value="SELL">Bearish / SELL</option>
+</select></label>
+</div>
+
+<div class="card">
+<button onclick="analyze()">GENERATE SIGNAL</button>
+<div id="result">WAIT</div>
+<div id="details" style="text-align:center">Analysis ka intezar hai</div>
+</div>
+
+<div class="card">
+<h3>Important</h3>
+<small>Ye manual analysis prototype hai. Live market feed connected nahi. Signals guaranteed nahi aur 99% accuracy ka dawa nahi. Real trade se pehle demo testing zaroor karein.</small>
+</div>
+
+<script>
+function analyze(){
+let checks=[...document.querySelectorAll('.check')];
+let count=checks.filter(x=>x.checked).length;
+let condition=document.getElementById('condition').value;
+let direction=document.getElementById('direction').value;
+let result=document.getElementById('result');
+let details=document.getElementById('details');
+
+if(condition==='choppy'||condition==='spike'||condition==='volatile'||count<7){
+result.innerText='WAIT';
+result.style.color='#ffc857';
+details.innerText='Market quality ya confirmations kam hain. Trade avoid karein.';
+return;
+}
+result.innerText=direction;
+result.style.color=direction==='BUY'?'#28e0a5':'#ff667a';
+details.innerText=count+' of 13 confirmations selected. Manual checks only; live verification zaroori hai.';
+}
+</script>
+</body>
+</html>
